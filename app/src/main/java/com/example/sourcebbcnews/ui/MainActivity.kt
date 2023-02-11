@@ -9,7 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityMainBinding
-    private val viewModel : NewsViewModel by viewModels()
+    private val newsViewModel : NewsViewModel by viewmodels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
