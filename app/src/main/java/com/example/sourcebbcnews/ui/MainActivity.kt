@@ -2,6 +2,7 @@ package com.example.sourcebbcnews.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.example.sourcebbcnews.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -9,8 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityMainBinding
-    private val newsViewModel : NewsViewModel by viewmodels()
-
+    private val newsViewModel: NewsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

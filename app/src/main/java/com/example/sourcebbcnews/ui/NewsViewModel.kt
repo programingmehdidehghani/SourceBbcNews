@@ -7,7 +7,6 @@ import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sourcebbcnews.SourceApplication
 import com.example.sourcebbcnews.models.NewsResponse
 import com.example.sourcebbcnews.repository.NewsRepository
 import com.example.sourcebbcnews.utils.Resource
