@@ -1,4 +1,4 @@
-package com.example.sourcebbcnews
+package com.example.sourcebbcnews.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
