@@ -25,12 +25,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setupRecyclerView()
-        newsViewModel.breakingNews.observe(this , Observer { response ->
-            when(response){
+        newsViewModel.breakingNews.observe(this, Observer { response ->
+            when (response) {
                 is Resource.Success -> {
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
-                        Log.i("tag","data is ..."+newsResponse)
+                        Log.i("tag", "data is ..." + newsResponse)
                     }
                 }
                 is Resource.Error -> {
@@ -43,6 +43,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        newsAdapter.setOnItemClickListener {
+           Toast.makeText(this,"min",Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setupRecyclerView(){
