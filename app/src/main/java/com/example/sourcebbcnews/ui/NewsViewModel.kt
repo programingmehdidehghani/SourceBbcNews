@@ -1,16 +1,12 @@
 package com.example.sourcebbcnews.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sourcebbcnews.models.Article
 import com.example.sourcebbcnews.models.NewsResponse
 import com.example.sourcebbcnews.repository.NewsRepository
 import com.example.sourcebbcnews.utils.Resource
-import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -50,9 +46,14 @@ class NewsViewModel @Inject constructor(
         }
     }
 
+    fun savedArticle(article: MutableList<Article>) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
+
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse>{
         if (response.isSuccessful){
             response.body()?.let { resultResponse ->
+                savedArticle(resultResponse.articles)
                 breakingNewsPage++
                 if (breakingNewsResponse == null){
                     breakingNewsResponse = resultResponse

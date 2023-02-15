@@ -1,11 +1,13 @@
 package com.example.sourcebbcnews.models
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
 @Entity(
-    tableName = "articles"
+    tableName = "articles",
+    indices = [Index(value = ["publishedAt"], unique = true)]
 )
 data class Article(
     @PrimaryKey(autoGenerate = true)

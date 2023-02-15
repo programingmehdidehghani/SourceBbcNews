@@ -10,5 +10,5 @@ import com.example.sourcebbcnews.models.Article
 interface NewsDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRun(article: Article)
+    suspend fun insertArticle(article: MutableList<Article>)
 }
