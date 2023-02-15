@@ -10,6 +10,7 @@ import com.example.sourcebbcnews.models.Article
     entities = [Article::class],
     version = 1
 )
+@TypeConverters(Converters::class)
 abstract class NewsDB : RoomDatabase() {
 
     abstract fun getRunDao() : NewsDAO
