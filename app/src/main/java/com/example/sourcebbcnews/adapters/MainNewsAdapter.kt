@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sourcebbcnews.R
 import com.example.sourcebbcnews.models.Article
+import kotlinx.android.synthetic.main.items_headline.view.*
 
 class MainNewsAdapter : RecyclerView.Adapter<MainNewsAdapter.ArticleViewHolder>() {
 
@@ -41,6 +42,13 @@ class MainNewsAdapter : RecyclerView.Adapter<MainNewsAdapter.ArticleViewHolder>(
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
+        holder.itemView.apply {
+            Glide.with(this).load(article.urlToImage).into(iv_picture_news_in_item_headline)
+            tv_names_provider_news_in_items_headline.text = article.source?.name
+            tv_title_news_in_items_headline.text = article.title
+            tv_date_news_in_items_headline.text = article.publishedAt
 
+
+        }
     }
 }
