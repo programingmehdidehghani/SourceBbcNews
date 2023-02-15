@@ -9,4 +9,7 @@ class NewsRepository @Inject constructor(
 
     suspend fun getBreakingNews(countryCode : String , pageNumber : Int) =
         newsApi.getBreakingNews(countryCode,pageNumber)
+
+    suspend fun getNameProviderNews( nameProviderNews : String) =
+        newsApi.getNamesProviderNews(nameProviderNews)
 }
