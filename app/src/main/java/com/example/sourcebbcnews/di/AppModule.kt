@@ -22,7 +22,7 @@ object AppModule {
     fun retrofit() : NewsApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()
     }

@@ -26,6 +26,7 @@ class NewsViewModel @Inject constructor(
     var breakingNewsPage = 1
     var breakingNewsResponse: NewsResponse? = null
 
+
     init {
         getBreakingNews("us")
     }
@@ -69,3 +70,4 @@ class NewsViewModel @Inject constructor(
 
 
 }
+

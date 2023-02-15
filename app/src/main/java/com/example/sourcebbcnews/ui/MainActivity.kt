@@ -6,26 +6,31 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.example.sourcebbcnews.databinding.ActivityMainBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sourcebbcnews.R
+import com.example.sourcebbcnews.adapters.MainNewsAdapter
 import com.example.sourcebbcnews.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityMainBinding
     private val newsViewModel: NewsViewModel by viewModels()
+    lateinit var newsAdapter: MainNewsAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
+        setupRecyclerView()
         newsViewModel.breakingNews.observe(this , Observer { response ->
             when(response){
                 is Resource.Success -> {
                     response.data?.let { newsResponse ->
-                      Log.i("tag","data is ..."+response)
+                        newsAdapter.differ.submitList(newsResponse.articles.toList())
+                        Log.i("tag","data is ..."+newsResponse)
                     }
                 }
                 is Resource.Error -> {
@@ -38,5 +43,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun setupRecyclerView(){
+        newsAdapter = MainNewsAdapter()
+        rv_main_news.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
     }
 }
