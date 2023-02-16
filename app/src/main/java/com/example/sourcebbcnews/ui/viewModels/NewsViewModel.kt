@@ -1,4 +1,4 @@
-package com.example.sourcebbcnews.ui
+package com.example.sourcebbcnews.ui.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

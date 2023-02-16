@@ -1,4 +1,4 @@
-package com.example.sourcebbcnews.ui
+package com.example.sourcebbcnews.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.example.sourcebbcnews.repository.NewsRepository

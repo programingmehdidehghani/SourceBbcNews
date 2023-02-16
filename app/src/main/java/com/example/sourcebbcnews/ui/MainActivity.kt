@@ -2,13 +2,13 @@ package com.example.sourcebbcnews.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sourcebbcnews.R
 import com.example.sourcebbcnews.adapters.MainNewsAdapter
+import com.example.sourcebbcnews.ui.viewModels.NewsViewModel
 import com.example.sourcebbcnews.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
