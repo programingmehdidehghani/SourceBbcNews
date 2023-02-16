@@ -14,6 +14,12 @@ interface NewsDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArticle(article: MutableList<Article>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTestArticle(article: Article)
+
     @Query("SELECT * FROM articles WHERE publishedAt = :publishedAt")
     fun getContentNews( publishedAt : String) : LiveData<Article>
+
+    @Query("SELECT * FROM articles")
+    fun getTestContentNews() : LiveData<List<Article>>
 }
