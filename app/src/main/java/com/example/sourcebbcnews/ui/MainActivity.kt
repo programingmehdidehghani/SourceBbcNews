@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         newsViewModel.breakingNews.observe(this, Observer { response ->
             when (response) {
                 is Resource.Success -> {
+                    hideProgressBar()
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
                     }

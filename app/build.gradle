@@ -80,6 +80,7 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.3"
     implementation "androidx.room:room-ktx:2.4.0"
 
-
+    //Biometric authentication
+    implementation("androidx.biometric:biometric:1.2.0-alpha04")
 
 }
