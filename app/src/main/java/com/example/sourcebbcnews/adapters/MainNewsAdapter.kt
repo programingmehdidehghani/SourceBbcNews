@@ -1,6 +1,5 @@
 package com.example.sourcebbcnews.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.sourcebbcnews.R
 import com.example.sourcebbcnews.models.Article
-import com.example.sourcebbcnews.ui.NewsContentActivity
+import com.example.sourcebbcnews.ui.NewsActivity
 import kotlinx.android.synthetic.main.items_headline.view.*
 
 class MainNewsAdapter : RecyclerView.Adapter<MainNewsAdapter.ArticleViewHolder>() {
@@ -59,8 +58,8 @@ class MainNewsAdapter : RecyclerView.Adapter<MainNewsAdapter.ArticleViewHolder>(
             tv_title_news_in_items_headline.text = article.title
             tv_date_news_in_items_headline.text = article.publishedAt
             tv_title_news_in_items_headline.setOnClickListener {
-                val intent = Intent(context, NewsContentActivity::class.java)
-                intent.putExtra("keyString", article.publishedAt)
+                val intent = Intent(context, NewsActivity::class.java)
+                intent.putExtra("publishedAt", article.publishedAt)
                 context.startActivity(intent)
             }
         }
