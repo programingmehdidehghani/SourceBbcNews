@@ -15,5 +15,5 @@ interface NewsDAO {
     suspend fun insertArticle(article: MutableList<Article>)
 
     @Query("SELECT * FROM articles WHERE publishedAt = :publishedAt")
-    fun getContentNews( publishedAt : String) : LiveData<List<Article>>
+    fun getContentNews( publishedAt : String) : LiveData<Article>
 }

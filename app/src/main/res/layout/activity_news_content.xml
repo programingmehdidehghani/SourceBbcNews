@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.NewsActivity">
+    tools:context=".ui.NewsContentActivity">
 
     <TextView
         android:id="@+id/tv_title_in_news_content_activity"
@@ -13,6 +13,7 @@
         android:layout_marginTop="12dp"
         android:textSize="18sp"
         android:gravity="center"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +21,12 @@
 
     <TextView
         android:id="@+id/tv_descriptions_in_news_content_activity"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:textSize="18sp"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:textSize="16sp"
         android:gravity="center"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_in_news_content_activity"
@@ -32,10 +35,12 @@
 
     <TextView
         android:id="@+id/tv_content_in_news_content_activity"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:textSize="18sp"
+        android:layout_marginTop="22dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:textSize="16sp"
         android:gravity="center"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,17 +50,16 @@
 
     <ImageView
         android:id="@+id/iv_picture_in_news_content_activity"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_content_in_news_content_activity"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
