@@ -29,14 +29,13 @@ android {
 
         flavorDimensions += "version"
         productFlavors {
-            dimension = "version"
-            applicationIdSuffix = ".demo"
-            versionNameSuffix = "-demo"
-            create("mock") {
-                applicationIdSuffix = ".mock"
+            real {
+                dimension "version"
+                applicationIdSuffix ".real"
             }
-            create("pro") {
-                applicationIdSuffix = ".pro"
+            mock {
+                dimension "version"
+                applicationIdSuffix ".mock"
             }
 
         }
