@@ -44,6 +44,10 @@ class ArticleDaoTest {
 
     @Before
     fun setupDatabase() {
+        /*database = Room.inMemoryDatabaseBuilder(
+            ApplicationProvider.getApplicationContext(),
+            NewsDB::class.java
+        ).allowMainThreadQueries().build()*/
         hiltRule.inject()
         wordsDao = database.getRunDao()
     }

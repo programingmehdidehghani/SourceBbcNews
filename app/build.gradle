@@ -23,7 +23,19 @@ android {
             // Replace com.example.android.dagger with your class path.
             testInstrumentationRunner = "com.example.android.dagger.CustomTestRunner"
         }
-    }
+        flavorDimensions += "version"
+        productFlavors {
+            dimension = "version"
+            applicationIdSuffix = ".demo"
+            versionNameSuffix = "-demo"
+            create("free") {
+                applicationIdSuffix = ".free"
+            }
+            create("pro") {
+                applicationIdSuffix = ".pro"
+            }
+
+        }
 
     buildTypes {
         release {
@@ -90,5 +102,5 @@ dependencies {
 
     //Biometric authentication
     implementation("androidx.biometric:biometric:1.2.0-alpha04")
-
+  }
 }
