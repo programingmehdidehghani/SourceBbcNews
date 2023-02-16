@@ -1,13 +1,10 @@
 package com.example.sourcebbcnews.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
-
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.example.sourcebbcnews.R
@@ -34,13 +31,21 @@ class SplashActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext,
                         "Authentication error: $errString", Toast.LENGTH_SHORT)
                         .show()
+                    finishAffinity();
+                    finish();
                 }
 
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     val  intent = Intent(this@SplashActivity , MainActivity::class.java)
+                    intent.addFlags(
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                Intent.FLAG_ACTIVITY_NEW_TASK
+                    )
                     startActivity(intent)
+                    finishAffinity();
+                    finish();
                 }
 
                 override fun onAuthenticationFailed() {
