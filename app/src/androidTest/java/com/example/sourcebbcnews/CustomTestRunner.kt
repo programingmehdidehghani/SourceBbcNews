@@ -19,28 +19,15 @@ import org.junit.runner.RunWith
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-@HiltAndroidTest
-@Module
-@TestInstallIn(
-    
-)
+
 class CustomTestRunner : AndroidJUnitRunner() {
 
-    @get:Rule
-    var hiltRule = HiltAndroidRule(this)
-
-    @Inject
-    lateinit var newsApi : AppModule
-
-    @Before
-    fun init() {
-        hiltRule.inject()
+    override fun newApplication(
+        cl: ClassLoader?,
+        className: String?,
+        context: Context?
+    ): Application {
+        return super.newApplication(cl, HiltTestApplication::class.java.name, context)
     }
 
-    @Test
-    fun happyath() {
-        val instance: Retrofit = newsApi.RetrofitClient().retrofit
-        //Assert that, Retrofit's base url matches to our BASE_URL
-        assert(instance.baseUrl().toString() == Constants.BASE_URL)
-    }
 }
