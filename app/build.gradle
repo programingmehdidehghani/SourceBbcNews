@@ -23,13 +23,17 @@ android {
             // Replace com.example.android.dagger with your class path.
             testInstrumentationRunner = "com.example.android.dagger.CustomTestRunner"
         }
+        missingDimensionStrategy("minApi", "minApi18", "minApi23")
+
+        missingDimensionStrategy("abi", "x86", "arm64")
+
         flavorDimensions += "version"
         productFlavors {
             dimension = "version"
             applicationIdSuffix = ".demo"
             versionNameSuffix = "-demo"
-            create("free") {
-                applicationIdSuffix = ".free"
+            create("mock") {
+                applicationIdSuffix = ".mock"
             }
             create("pro") {
                 applicationIdSuffix = ".pro"
