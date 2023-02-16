@@ -17,7 +17,7 @@ class NewsRepository @Inject constructor(
 
     suspend fun upsert (article: MutableList<Article>) = db.getRunDao().insertArticle(article)
 
-    suspend fun getContentNews (publishedAt: String) = db.getRunDao().getContentNews(publishedAt)
+    fun getContentNews (publishedAt: String) = db.getRunDao().getContentNews(publishedAt)
 
 
 }
