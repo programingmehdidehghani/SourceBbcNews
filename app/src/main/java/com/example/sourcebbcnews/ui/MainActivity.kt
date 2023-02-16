@@ -2,6 +2,7 @@ package com.example.sourcebbcnews.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private val newsViewModel: NewsViewModel by viewModels()
     lateinit var newsAdapter: MainNewsAdapter
+    var isLoading = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +35,27 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 is Resource.Error -> {
+                    hideProgressBar()
                     response.message?.let { message ->
                         Toast.makeText(this, "An error occured: $message", Toast.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> {
-
+                    showProgressBar()
                 }
             }
         })
 
+    }
+
+    private fun hideProgressBar() {
+        progress_in_activity_main.visibility = View.INVISIBLE
+        isLoading = false
+    }
+
+    private fun showProgressBar() {
+        progress_in_activity_main.visibility = View.VISIBLE
+        isLoading = true
     }
 
     private fun setupRecyclerView(){
