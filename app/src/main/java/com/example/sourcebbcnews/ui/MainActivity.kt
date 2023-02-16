@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
-                        Log.i("tag", "data is ..." + newsResponse)
                     }
                 }
                 is Resource.Error -> {
@@ -44,9 +43,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        newsAdapter.setOnItemClickListener {
-           Toast.makeText(this,"min",Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun setupRecyclerView(){
