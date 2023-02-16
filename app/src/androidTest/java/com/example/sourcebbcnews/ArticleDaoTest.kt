@@ -31,16 +31,14 @@ class ArticleDaoTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
+    @get:Rule
+    val activity = ActivityScenarioRule(MainActivity::class.java)
+
+    private lateinit var wordsDao: NewsDAO
 
     @Inject
     @Named("test_db")
     private lateinit var database: NewsDB
-
-
-    private lateinit var wordsDao: NewsDAO
-
-    @get:Rule
-    val activity = ActivityScenarioRule(MainActivity::class.java)
 
 
 
