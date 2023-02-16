@@ -3,13 +3,16 @@ package com.example.sourcebbcnews.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sourcebbcnews.R
 import com.example.sourcebbcnews.adapters.MainNewsAdapter
 import com.example.sourcebbcnews.ui.viewModels.NewsViewModel
+import com.example.sourcebbcnews.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.sourcebbcnews.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private val newsViewModel: NewsViewModel by viewModels()
     lateinit var newsAdapter: MainNewsAdapter
     var isLoading = false
+    var isLastPage = false
+    var isScrolling = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +38,11 @@ class MainActivity : AppCompatActivity() {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
+                        val totalPages =newsResponse.totalResults / QUERY_PAGE_SIZE + 2
+                        isLastPage = newsViewModel.breakingNewsPage == totalPages
+                        if(isLastPage){
+                            rv_main_news.setPadding(0,0,0,0)
+                        }
                     }
                 }
                 is Resource.Error -> {
@@ -47,6 +57,36 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    val scrollListener = object : RecyclerView.OnScrollListener(){
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+            val visibleItemCount = layoutManager.childCount
+            val totalItemCount = layoutManager.itemCount
+
+            val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
+            val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
+            val isNotAtBeginning = firstVisibleItemPosition >= 0
+            val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
+            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
+                    isTotalMoreThanVisible && isScrolling
+            if (shouldPaginate){
+                newsViewModel.getBreakingNews("us")
+                isScrolling = false
+            }else {
+                rv_main_news.setPadding(0,0,0,0)
+            }
+        }
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                isScrolling = true
+            }
+        }
     }
 
     private fun hideProgressBar() {

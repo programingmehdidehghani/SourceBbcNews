@@ -3,7 +3,6 @@ package com.example.sourcebbcnews.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
